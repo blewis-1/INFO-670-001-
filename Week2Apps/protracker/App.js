@@ -22,6 +22,7 @@ SplashScreen.preventAutoHideAsync();
 function App() {
     const [textValue, setTextValue] = useState('');
     const [tasks, setTasks] = useState([]);
+    
     const [fontsLoaded, fontError] = useFonts({
         'Aeonik-Bold': require('./assets/fonts/Aeonik-Bold.otf'),
         'Aeonik-Medium': require('./assets/fonts/Aeonik-Medium.otf'),
@@ -50,6 +51,10 @@ function App() {
 
     }
 
+    const handleDelete = (taskIndex) => {
+        setTasks(tasks.filter((task, index) => index !== taskIndex))
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
             <KeyboardAvoidingView
@@ -59,9 +64,14 @@ function App() {
                 <View style={styles.container}>
                     <AppBar></AppBar>
 
+
                     {tasks.length > 0 ?
                         <ScrollView>
-                            {tasks.map((task, index) => (<Item name={task} key={index}></Item>))}
+                            {
+                                tasks.map((task, index) => (
+                                    <Item name={task} onPressDelete={() => handleDelete(index)} key={index}></Item>)
+                                )
+                            }
                         </ScrollView>
                         : <EmptyList></EmptyList>
                     }

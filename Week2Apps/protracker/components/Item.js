@@ -1,15 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, Touchable, Pressable, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 
 
-function Item({ name, onPressDelete, index }) {
+function Item({ name, onPressDelete }) {
     return (
         <View style={styles.box}>
-            <View style={styles.completeBox}></View>
+            <TouchableOpacity>
+                <View style={styles.completeBox}>
+                    <FontAwesome5 name="check" size={24} color="black" />
+                </View>
+            </TouchableOpacity>
+
             <Text style={styles.text}>{name}</Text>
             <View style={styles.buttonBg}>
-                <TouchableOpacity onPress={onPressDelete(index)}>
+                <TouchableOpacity onPress={onPressDelete}>
                     <AntDesign name="delete" size={24} color="black" />
                 </TouchableOpacity>
             </View>
@@ -38,6 +43,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         borderColor: 'black',
         borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+
 
     },
     text: {
