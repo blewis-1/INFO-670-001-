@@ -22,7 +22,7 @@ SplashScreen.preventAutoHideAsync();
 function App() {
     const [textValue, setTextValue] = useState('');
     const [tasks, setTasks] = useState([]);
-    
+
     const [fontsLoaded, fontError] = useFonts({
         'Aeonik-Bold': require('./assets/fonts/Aeonik-Bold.otf'),
         'Aeonik-Medium': require('./assets/fonts/Aeonik-Medium.otf'),
@@ -56,31 +56,30 @@ function App() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={{ flex: 1 }}
-            >
-                <View style={styles.container}>
-                    <AppBar></AppBar>
+        // <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={{ flex: 1 }}
+            onLayout={onLayoutRootView}
+        >
+            <View style={styles.container}>
+                <AppBar></AppBar>
+                {tasks.length > 0 ?
+                    <ScrollView>
+                        {
+                            tasks.map((task, index) => (
+                                <Item name={task} onPressDelete={() => handleDelete(index)} key={index}></Item>)
+                            )
+                        }
+                    </ScrollView>
+                    : <EmptyList></EmptyList>
+                }
 
-
-                    {tasks.length > 0 ?
-                        <ScrollView>
-                            {
-                                tasks.map((task, index) => (
-                                    <Item name={task} onPressDelete={() => handleDelete(index)} key={index}></Item>)
-                                )
-                            }
-                        </ScrollView>
-                        : <EmptyList></EmptyList>
-                    }
-
-                    <Input textValue={textValue} setTextValue={setTextValue} onPress={handlePress}></Input>
-                </View>
-                <StatusBar style="auto" />
-            </KeyboardAvoidingView>
-        </SafeAreaView >
+                <Input textValue={textValue} setTextValue={setTextValue} onPress={handlePress}></Input>
+            </View>
+            <StatusBar style="auto" />
+        </KeyboardAvoidingView>
+        // </SafeAreaView >
     );
 }
 
