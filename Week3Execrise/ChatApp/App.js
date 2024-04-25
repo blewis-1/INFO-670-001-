@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
+import AppBar from './components/AppBar';
 import { Alert, Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import MessageList from './components/MessageList';
+import { PaperProvider } from 'react-native-paper';
 
 export default class Flex extends Component {
   _onButtonPressed() {
@@ -10,13 +12,14 @@ export default class Flex extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={[styles.container]}>
-        <View style={[styles.view]}>
-          <MessageList></MessageList>
-        </View>
-
-      </SafeAreaView>
-
+      <PaperProvider>
+        <View style={[styles.container]}>
+          <AppBar></AppBar>
+          <View style={[styles.view]}>
+            <MessageList></MessageList>
+          </View>
+        </View >
+      </PaperProvider>
     );
   }
 }
@@ -24,12 +27,12 @@ export default class Flex extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    justifyContent: 'flex-end',
-
+    justifyContent: 'space-between',
   },
   view: {
-    padding: 10,
+    paddingBottom: 60,
+    
   }
+
 
 });

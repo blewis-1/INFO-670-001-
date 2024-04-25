@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 
 
 function Item({ name, onPressDelete }) {
+    const [isComplete, setIsComplete] = useState(false)
+
     return (
         <View style={styles.box}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setIsComplete(!isComplete)}>
                 <View style={styles.completeBox}>
-                    <FontAwesome5 name="check" size={24} color="black" />
+                    <FontAwesome5 name={isComplete ? "check" : ""} size={24} color="black" />
                 </View>
             </TouchableOpacity>
 
