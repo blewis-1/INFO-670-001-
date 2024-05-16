@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, Image, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
-const GalleryScreen = (navigation) => {
-    const images = [
+const GalleryScreen = () => {
+    const posts = [
         {
             img: require('../assets/minimalist01.jpg'),
             author: "James David",
@@ -26,19 +27,20 @@ const GalleryScreen = (navigation) => {
 
     ]
 
+    const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.container}>
                 <Text style={styles.heading}> Minimalist Gallery </Text>
                 <FlatList
                     style={styles.list}
-                    data={images}
+                    data={posts}
                     renderItem={({ item }) => (
                         <View>
                             <TouchableOpacity onPress={() => {
-                                
-                             }} activeOpacity={0}>
+                                navigation.navigate('GalleryDetailScreen', { post: item })
+                            }} activeOpacity={0}>
                                 <View style={styles.imageWrapper}>
                                     <Image style={styles.image} source={item.img} />
                                 </View>
@@ -77,8 +79,8 @@ const styles = StyleSheet.create({
         height: "100%",
         objectFit: "cover",
         borderRadius: 8,
-
         // alignSelf:"center"
     }
 });
 export default GalleryScreen;
+
