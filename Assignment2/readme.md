@@ -5,5 +5,3 @@
 - Assignment #2
 
 
-Uploading Simulator Screen Recording - iPhone 15 Pro - 2024-05-16 at 12.02.26.mp4…
-
