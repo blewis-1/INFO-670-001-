@@ -1,9 +1,7 @@
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Button, StyleSheet, Text } from 'react-native';
 import GalleryScreen from './screens/GalleryScreen';
 import GalleryDetailScreen from "./screens/GalleryDetailScreen";
 import CreateProfileScreen from "./screens/CreateProfileScreen";

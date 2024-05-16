@@ -24,9 +24,7 @@ function ProfileScreen() {
                 // Handle error retrieving data
             }
         };
-
         fetchData();
-
     }, [isFocused]);
 
     return (
